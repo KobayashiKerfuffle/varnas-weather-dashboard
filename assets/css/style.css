@@ -37,6 +37,9 @@ main {
 }
 
 #search-history {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align buttons to the start of the flex container */
     margin-top: 20px;
 }
 
@@ -72,6 +75,23 @@ main {
     text-align: center;
     max-width: 200px;
 }
+
+.history-button {
+    padding: 5px 10px;
+    margin-bottom: 5px; /* Add space between buttons */
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Full width of the container */
+}
+
+.history-button:hover {
+    background-color: #0056b3;
+}
+
 
 @media (max-width: 768px) {
     main {

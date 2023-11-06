@@ -122,9 +122,12 @@ function displayForecast(forecastData) {
 }
 
 function updateSearchHistory(city) {
-    let cityEl = document.createElement('p');
-    cityEl.textContent = city;
-    searchHistoryContainer.appendChild(cityEl);
+    // Create a button instead of a paragraph
+    let cityButton = document.createElement('button');
+    cityButton.textContent = city;
+    cityButton.className = 'history-button'; // You can define this class in your CSS for styling
+    cityButton.onclick = () => getCoordinates(city); // Add click event to trigger search
+    searchHistoryContainer.appendChild(cityButton);
 
     let searchHistory = localStorage.getItem('searchHistory') ?
                         JSON.parse(localStorage.getItem('searchHistory')) : [];
@@ -138,8 +141,12 @@ function updateSearchHistory(city) {
 window.onload = () => {
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
     searchHistory.forEach(city => {
-        let cityEl = document.createElement('p');
-        cityEl.textContent = city;
-        searchHistoryContainer.appendChild(cityEl);
+        // Create a button for each city
+        let cityButton = document.createElement('button');
+        cityButton.textContent = city;
+        cityButton.className = 'history-button'; // Reuse the class for styling
+        cityButton.onclick = () => getCoordinates(city); // Add click event to trigger search
+        searchHistoryContainer.appendChild(cityButton);
     });
 };
+
