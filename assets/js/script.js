@@ -33,18 +33,21 @@ function getWeatherData(lat, lon, city) {
     fetch(weatherApiUrl)
         .then(response => response.json())
         .then(data => {
-            displayCurrentWeather(data.list[0]);
+            displayCurrentWeather(data.list[0], city);
             displayForecast(data.list);
             updateSearchHistory(city);
         })
         .catch(error => console.error('Error fetching weather data:', error));
 }
 
-function displayCurrentWeather(weatherData) {
+function displayCurrentWeather(weatherData, city) {
     currentWeatherContainer.innerHTML = '';
 
     let weatherCard = document.createElement('div');
-    weatherCard.className = 'current-day';  // Use the same class as forecast cards
+    weatherCard.className = 'current-day';
+
+    let cityEl = document.createElement('h2');
+    cityEl.textContent = city;
 
     let date = new Date(weatherData.dt * 1000).toDateString();
     let dateEl = document.createElement('p');
@@ -65,13 +68,14 @@ function displayCurrentWeather(weatherData) {
     let humidity = document.createElement('p');
     humidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
 
+    weatherCard.appendChild(cityEl);
     weatherCard.appendChild(dateEl);
     weatherCard.appendChild(iconEl);
     weatherCard.appendChild(temperature);
     weatherCard.appendChild(windSpeed);
     weatherCard.appendChild(humidity);
 
-    currentWeatherContainer.appendChild(weatherCard); // Append the new container to the main container
+    currentWeatherContainer.appendChild(weatherCard);
 }
 
 function displayForecast(forecastData) {
@@ -122,11 +126,10 @@ function displayForecast(forecastData) {
 }
 
 function updateSearchHistory(city) {
-    // Create a button instead of a paragraph
     let cityButton = document.createElement('button');
     cityButton.textContent = city;
-    cityButton.className = 'history-button'; // You can define this class in your CSS for styling
-    cityButton.onclick = () => getCoordinates(city); // Add click event to trigger search
+    cityButton.className = 'history-button';
+    cityButton.onclick = () => getCoordinates(city);
     searchHistoryContainer.appendChild(cityButton);
 
     let searchHistory = localStorage.getItem('searchHistory') ?
@@ -141,11 +144,10 @@ function updateSearchHistory(city) {
 window.onload = () => {
     let searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
     searchHistory.forEach(city => {
-        // Create a button for each city
         let cityButton = document.createElement('button');
         cityButton.textContent = city;
-        cityButton.className = 'history-button'; // Reuse the class for styling
-        cityButton.onclick = () => getCoordinates(city); // Add click event to trigger search
+        cityButton.className = 'history-button';
+        cityButton.onclick = () => getCoordinates(city);
         searchHistoryContainer.appendChild(cityButton);
     });
 };

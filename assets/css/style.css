@@ -31,9 +31,25 @@ main {
     flex-direction: column;
 }
 
+#city-input {
+    padding: 5px 10px;
+    margin-bottom: 5px; /* Add space between buttons */
+}
+
 #search-button {
-    padding: 10px;
-    margin-left: 10px;
+    padding: 5px 10px;
+    margin-bottom: 5px; /* Add space between buttons */
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Full width of the container */
+}
+
+#search-button:hover {
+    background-color: #0056b3;
 }
 
 #search-history {
@@ -67,9 +83,11 @@ main {
 
 .current-day {
     padding: 10px;
-    background-color: #9aa9b9;
+    background-color: #989fa7;
     color: white;
     border-radius: 5px;
+    border-color: black;
+    border-width: 5px;
     margin: 5px;
     flex-basis: calc(20% - 10px);
     text-align: center;
@@ -80,7 +98,7 @@ main {
     padding: 5px 10px;
     margin-bottom: 5px; /* Add space between buttons */
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #989fa7;
     color: white;
     border: none;
     border-radius: 5px;
@@ -89,7 +107,7 @@ main {
 }
 
 .history-button:hover {
-    background-color: #0056b3;
+    background-color: #5a5d61;
 }
 
 
