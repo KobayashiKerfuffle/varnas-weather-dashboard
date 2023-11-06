@@ -74,4 +74,5 @@ Distributed under the MIT License.
 ## Contact
 
 Repo Link: https://github.com/KobayashiKerfuffle/varnas-weather-dashboard.git
+
 Pages Link: https://kobayashikerfuffle.github.io/varnas-weather-dashboard
