@@ -42,19 +42,36 @@ function getWeatherData(lat, lon, city) {
 
 function displayCurrentWeather(weatherData) {
     currentWeatherContainer.innerHTML = '';
-    
+
+    let weatherCard = document.createElement('div');
+    weatherCard.className = 'current-day';  // Use the same class as forecast cards
+
+    let date = new Date(weatherData.dt * 1000).toDateString();
+    let dateEl = document.createElement('p');
+    dateEl.textContent = date;
+
+    let iconCode = weatherData.weather[0].icon;
+    let iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+    let iconEl = document.createElement('img');
+    iconEl.src = iconUrl;
+    iconEl.alt = weatherData.weather[0].description;
+
     let temperature = document.createElement('p');
     temperature.textContent = `Temperature: ${weatherData.main.temp} °C`;
-
-    let humidity = document.createElement('p');
-    humidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
 
     let windSpeed = document.createElement('p');
     windSpeed.textContent = `Wind Speed: ${weatherData.wind.speed} km/h`;
 
-    currentWeatherContainer.appendChild(temperature);
-    currentWeatherContainer.appendChild(humidity);
-    currentWeatherContainer.appendChild(windSpeed);
+    let humidity = document.createElement('p');
+    humidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+
+    weatherCard.appendChild(dateEl);
+    weatherCard.appendChild(iconEl);
+    weatherCard.appendChild(temperature);
+    weatherCard.appendChild(windSpeed);
+    weatherCard.appendChild(humidity);
+
+    currentWeatherContainer.appendChild(weatherCard); // Append the new container to the main container
 }
 
 function displayForecast(forecastData) {
